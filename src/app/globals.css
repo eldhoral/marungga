@@ -108,8 +108,30 @@ a {
   background-color: var(--color-primary-dark);
   color: white;
 }
-.section-dark h1, .section-dark h2, .section-dark h3 {
+.section-dark h1, .section-dark h2, .section-dark h3, .section-dark .section-title {
   color: white;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-md);
+  position: relative;
+  display: inline-block;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 4px;
+  background-color: var(--color-accent);
+  border-radius: 2px;
+}
+.text-center .section-title::after {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Typography Utilities */
@@ -128,6 +150,7 @@ a {
 .text-muted { color: var(--color-text-muted); }
 .text-primary { color: var(--color-primary); }
 .text-accent { color: var(--color-accent); }
+.text-white { color: #ffffff; }
 
 .font-bold { font-weight: 700; }
 .font-semibold { font-weight: 600; }

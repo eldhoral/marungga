@@ -2,18 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
 import ProgramCard from "@/components/ProgramCard";
+// Force refresh
+import { ALL_PROGRAMS } from "../data/programs";
 import "./page.css";
 
 export default function Home() {
   return (
     <div className="home-page animate-fade-in">
-      
+
       {/* Cinematic Hero Section */}
       <section className="hero-section">
         <div className="hero-image-container">
-          <Image 
-            src="/hero_placeholder.png" 
-            alt="Marungga Foundation Hero - Landscape" 
+          <Image
+            src="/hero_placeholder.png"
+            alt="Marungga Foundation Hero - Landscape"
             fill
             sizes="100vw"
             className="hero-image"
@@ -21,7 +23,7 @@ export default function Home() {
           />
           <div className="hero-overlay"></div>
         </div>
-        
+
         <div className="container hero-content">
           <div className="organic-panel hero-panel">
             <h1 className="hero-title">
@@ -76,7 +78,7 @@ export default function Home() {
               <h3>Perlindungan Anak</h3>
               <p>Menciptakan lingkungan aman dan mendukung perlindungan sosial yang komprehensif bagi anak-anak di masyarakat.</p>
             </div>
-            
+
             <div className="pillar-card organic-panel">
               <div className="pillar-icon">🤝</div>
               <h3>Inklusi & Kesetaraan Gender</h3>
@@ -111,30 +113,24 @@ export default function Home() {
 
           <div className="programs-scroller">
             <div className="programs-scroller-inner">
-              <ProgramCard 
-                slug="proyek-bisa-nutrisi"
-                title="Program BISA" 
-                description="Peningkatan Kapasitas mekanisme rantai pasok dan pengelolaan komoditas nutrisi di Kabupaten TTU dan Kupang."
-                date="2021"
-                funding="Nutrition International"
-              />
-              <ProgramCard 
-                slug="proyek-lii-marapu"
-                title="Proyek Lii Marapu" 
-                description="Mendukung komunitas Adat di Sumba Timur melalui penguatan budaya dan masyarakat adat."
-                date="2021 - 2023"
-                funding="Voice"
-              />
-              <ProgramCard 
-                slug="innovation-lab-2025"
-                title="Innovation Lab 2025" 
-                description="Berpartisipasi dalam program peningkatan kapasitas dan inovasi kelembagaan."
-                date="2025"
-                funding="Mandiri"
-              />
+              {['proyek-bisa-nutrisi', 'proyek-lii-marapu', 'innovation-lab-2025'].map((slug, index) => {
+                const program = ALL_PROGRAMS.find(p => p.slug === slug);
+                if (!program) return null;
+                return (
+                  <ProgramCard
+                    key={index}
+                    slug={program.slug}
+                    title={program.title}
+                    description={program.description}
+                    date={program.date}
+                    funding={program.funding}
+                    imageUrl={program.imageUrl}
+                  />
+                );
+              })}
             </div>
           </div>
-          
+
           <div className="text-center mt-xl show-mobile">
             <Button as={Link} href="/programs" variant="primary" className="btn-full-mobile">Lihat Semua Program</Button>
           </div>
@@ -142,13 +138,25 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="section bg-primary-dark text-center relative overflow-hidden cta-section">
+      <section className="section cta-section text-center relative overflow-hidden">
+        <div className="cta-bg">
+          <div className="cta-blob blob-1"></div>
+          <div className="cta-blob blob-2"></div>
+          <div className="cta-blob blob-3"></div>
+        </div>
+
         <div className="container relative z-10">
-          <h2 className="text-3xl md:text-4xl text-white mb-md font-jakarta font-bold">Mari Berkolaborasi Bersama</h2>
-          <p className="max-w-2xl mx-auto text-lg mb-xl text-white opacity-80">
-            Dukung misi kemanusiaan kami atau jadilah bagian dari perubahan di Timur Indonesia.
-          </p>
-          <Button as={Link} href="/contact" variant="primary" className="cta-btn btn-full-mobile">Hubungi Kami Sekarang</Button>
+          <div className="cta-content-wrapper organic-panel glass-panel-dark">
+            <h2 className="text-3xl md:text-5xl text-white mb-md font-jakarta font-bold">Mari Berkolaborasi Bersama</h2>
+            <p className="max-w-2xl mx-auto text-lg md:text-xl mb-xl text-white opacity-90 leading-relaxed">
+              Dukung misi kemanusiaan kami atau jadilah bagian dari perubahan di Timur Indonesia.
+              Bersama kita bisa membangun masyarakat yang lebih tangguh dan berdaya.
+            </p>
+            <div className="flex justify-center gap-sm flex-wrap">
+              <Button as={Link} href="/contact" className="cta-btn btn-full-mobile btn-cta-primary">Hubungi Kami Sekarang</Button>
+              <Button as={Link} href="/programs" className="cta-btn btn-full-mobile btn-cta-outline">Jelajahi Program</Button>
+            </div>
+          </div>
         </div>
       </section>
     </div>

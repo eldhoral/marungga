@@ -169,14 +169,106 @@
   scroll-snap-align: center;
 }
 
-/* Call to Action */
+/* Call to Action Redesign */
 .cta-section {
-  padding: 6rem 0;
+  padding: 8rem 0;
+  background-color: var(--color-primary-dark);
+}
+
+.cta-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cta-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.6;
+  animation: float 15s infinite ease-in-out alternate;
+}
+
+.cta-blob.blob-1 {
+  width: 400px;
+  height: 400px;
+  background: var(--color-primary);
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.cta-blob.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--color-accent);
+  bottom: -200px;
+  right: -100px;
+  animation-delay: -5s;
+}
+
+.cta-blob.blob-3 {
+  width: 300px;
+  height: 300px;
+  background: var(--color-surface);
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.2;
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -50px) scale(1.1); }
+  100% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.glass-panel-dark {
+  background: rgba(42, 61, 36, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.cta-content-wrapper {
+  padding: 4rem 2rem;
+  border-radius: var(--radius-xl);
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .cta-btn {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding: 1rem 2.5rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.btn-cta-primary {
+  background-color: var(--color-accent);
+  color: var(--color-primary-dark);
+}
+
+.btn-cta-primary:hover {
+  background-color: #f1b34d; /* slightly lighter accent */
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn-cta-outline {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-cta-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  transform: translateY(-2px);
 }
 
 .show-mobile { display: none; }

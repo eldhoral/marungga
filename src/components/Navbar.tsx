@@ -40,7 +40,7 @@ export default function Navbar() {
               <Image src="/marungga_logo.png" alt="Marungga Foundation" width={40} height={40} className="brand-logo" />
               <span className="brand-text">Marungga</span>
             </Link>
-            
+
             <ul className="navbar-nav desktop-nav">
               {navItems.map((item) => (
                 <li key={item.path}>
@@ -51,8 +51,8 @@ export default function Navbar() {
               ))}
             </ul>
 
-            <button 
-              className={`hamburger-btn ${isMobileMenuOpen ? 'open' : ''}`} 
+            <button
+              className={`hamburger-btn ${isMobileMenuOpen ? 'open' : ''}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
