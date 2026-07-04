@@ -124,7 +124,7 @@ export default function About() {
               <div className="flex flex-col md:flex-row justify-center gap-md md:gap-xl mt-md">
                 <div className="flex flex-col gap-sm w-full md:w-auto">
                   <MemberCard role="Pembina" name="Rika Setiawati" />
-                  <MemberCard role="Pembina" name="Yulni M. Nggabu" />
+                  <MemberCard role="Pembina" name="Yufni Mole Nggebu" />
                 </div>
                 <div className="flex flex-col gap-sm w-full md:w-auto">
                   <MemberCard role="Pengawas" name="Dianika Wira Atmaja" />
@@ -160,7 +160,7 @@ export default function About() {
                 </div>
                 <div className="flex flex-col items-center gap-sm">
                   <h4 className="tier-title text-sm mb-xs text-primary font-bold uppercase tracking-wider text-center">Program dan<br/>Pengembangan</h4>
-                  <MemberCard role="Koordinator" name="S. Fridwan K. Pelickita" className="w-full" />
+                  <MemberCard role="Koordinator" name="S. Fridwan Pellokila" className="w-full" />
                   <MemberCard role="Anggota" name="Meilinda Fanni Oktaviani" className="w-full" />
                 </div>
                 <div className="flex flex-col items-center gap-sm">
