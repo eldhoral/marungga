@@ -1,0 +1,120 @@
+.programs-header {
+  padding-top: 150px;
+  padding-bottom: var(--space-xl);
+}
+
+/* Sticky Filter Bar */
+.sticky-filter {
+  position: sticky;
+  top: 90px; /* Below navbar */
+  z-index: 50;
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xxl);
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(20px);
+}
+
+.search-input,
+.year-select {
+  padding: 0.875rem 1.5rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: var(--radius-full);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1.05rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  color: var(--color-text);
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.year-select {
+  min-width: 180px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%230A3622%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.5rem top 50%;
+  background-size: 0.65rem auto;
+}
+
+.search-input:focus,
+.year-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.15);
+  background-color: white;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--space-xxl);
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.page-numbers {
+  display: flex;
+  gap: var(--space-xs);
+  background: var(--glass-bg);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  border: var(--glass-border);
+}
+
+.page-btn {
+  background-color: white;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.page-numbers .page-btn {
+  border: none;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+}
+
+.page-btn:hover:not(:disabled) {
+  background-color: var(--color-surface-alt);
+  color: var(--color-primary);
+}
+
+.page-btn.active {
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+  color: white;
+  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.2);
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .programs-header { padding-top: 100px; padding-bottom: var(--space-md); }
+  .sticky-filter {
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    position: relative; /* Unsticky on mobile so it doesn't cover too much vertical space */
+    top: 0;
+    margin-bottom: var(--space-lg);
+  }
+  .search-input, .year-select {
+    width: 100%;
+    min-width: 100%;
+  }
+}

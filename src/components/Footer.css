@@ -1,0 +1,125 @@
+.footer {
+  background-color: var(--color-primary-dark);
+  color: white;
+  padding: var(--space-xl) 0 var(--space-md);
+  margin-top: auto;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: var(--space-xl);
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-light), var(--color-accent));
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.footer-brand {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  letter-spacing: -0.02em;
+}
+
+.footer-logo {
+  border-radius: var(--radius-sm);
+  background: white;
+  padding: 2px;
+}
+
+.footer-heading {
+  color: white;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.15rem;
+  margin-bottom: var(--space-sm);
+  position: relative;
+  display: inline-block;
+}
+
+.footer-heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+.footer-text {
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 400px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.footer-links, .footer-contact {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.footer-links li, .footer-contact li {
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  font-size: 0.95rem;
+}
+
+.footer-links a {
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  padding: 4px 0; /* Larger touch target */
+}
+
+.footer-links a:hover {
+  color: var(--color-primary-light);
+  transform: translateX(4px);
+}
+
+.footer-contact-icon {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+.footer-bottom {
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+@media (min-width: 769px) {
+  .footer {
+    padding-bottom: var(--space-md); /* Reset bottom padding on desktop */
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  .footer-text {
+    max-width: 100%;
+  }
+}

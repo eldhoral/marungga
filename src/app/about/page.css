@@ -1,0 +1,122 @@
+.about-page {
+  padding-top: 80px;
+}
+
+.about-header {
+  padding: 6rem 0 3rem;
+}
+
+.member-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  text-align: left;
+  transition: transform 0.3s ease;
+  min-width: 280px;
+}
+
+.member-card:hover {
+  transform: translateY(-2px);
+}
+
+.member-card.featured {
+  padding: var(--space-lg);
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-primary-dark);
+  color: white;
+}
+
+.member-card.featured .member-role {
+  color: var(--color-primary-light);
+}
+
+.member-card.featured .member-name {
+  color: white;
+}
+
+.member-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--color-primary-light);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.member-card.featured .member-avatar {
+  width: 80px;
+  height: 80px;
+  font-size: 2rem;
+  background-color: var(--color-primary);
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-role {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.member-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.misi-card {
+  padding: var(--space-lg);
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.misi-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.misi-card p {
+  font-size: 1.05rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .about-story-grid, .about-story-grid-reverse {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .about-story-grid-reverse {
+    flex-direction: column-reverse;
+  }
+  
+  .misi-card {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .misi-number {
+    font-size: 2rem;
+  }
+  
+  .org-bidang-grid {
+    grid-template-columns: 1fr;
+  }
+}
