@@ -1,16 +1,29 @@
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import './ProgramCard.css';
 
 interface ProgramCardProps {
+  slug: string;
   title: string;
   description: string;
   date?: string;
   funding?: string;
+  imageUrl?: string;
 }
 
-export default function ProgramCard({ title, description, date, funding }: ProgramCardProps) {
+export default function ProgramCard({ slug, title, description, date, funding, imageUrl }: ProgramCardProps) {
   return (
     <div className="program-card organic-panel">
+      <div className="program-image-wrapper">
+        <Image 
+          src={imageUrl || "/hero_placeholder.png"} 
+          alt={title} 
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="program-image"
+        />
+      </div>
       <div className="program-card-header">
         <h3 className="program-title">{title}</h3>
       </div>
@@ -32,7 +45,9 @@ export default function ProgramCard({ title, description, date, funding }: Progr
         <p className="program-desc">{description}</p>
       </div>
       <div className="program-footer">
-        <span className="program-action">Pelajari Lebih Lanjut &rarr;</span>
+        <Link href={`/programs/${slug}`} className="program-action">
+          Pelajari Lebih Lanjut &rarr;
+        </Link>
       </div>
     </div>
   );

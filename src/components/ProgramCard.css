@@ -17,7 +17,25 @@
   height: 6px;
   background-color: var(--color-primary);
   opacity: 0.8;
+  z-index: 10;
   transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.program-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.program-image {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.program-card:hover .program-image {
+  transform: scale(1.05);
 }
 
 .program-card:hover {
@@ -36,7 +54,7 @@
 }
 
 .program-title {
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-jakarta), sans-serif;
   font-size: 1.4rem;
   color: var(--color-primary-dark);
   line-height: 1.3;

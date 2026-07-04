@@ -14,7 +14,8 @@ export default function Home() {
           <Image 
             src="/hero_placeholder.png" 
             alt="Marungga Foundation Hero - Landscape" 
-            fill 
+            fill
+            sizes="100vw"
             className="hero-image"
             priority
           />
@@ -111,18 +112,21 @@ export default function Home() {
           <div className="programs-scroller">
             <div className="programs-scroller-inner">
               <ProgramCard 
+                slug="proyek-bisa-nutrisi"
                 title="Program BISA" 
                 description="Peningkatan Kapasitas mekanisme rantai pasok dan pengelolaan komoditas nutrisi di Kabupaten TTU dan Kupang."
                 date="2021"
                 funding="Nutrition International"
               />
               <ProgramCard 
+                slug="proyek-lii-marapu"
                 title="Proyek Lii Marapu" 
                 description="Mendukung komunitas Adat di Sumba Timur melalui penguatan budaya dan masyarakat adat."
                 date="2021 - 2023"
                 funding="Voice"
               />
               <ProgramCard 
+                slug="innovation-lab-2025"
                 title="Innovation Lab 2025" 
                 description="Berpartisipasi dalam program peningkatan kapasitas dan inovasi kelembagaan."
                 date="2025"
@@ -140,7 +144,7 @@ export default function Home() {
       {/* Call to Action */}
       <section className="section bg-primary-dark text-center relative overflow-hidden cta-section">
         <div className="container relative z-10">
-          <h2 className="text-3xl md:text-4xl text-white mb-md font-outfit font-bold">Mari Berkolaborasi Bersama</h2>
+          <h2 className="text-3xl md:text-4xl text-white mb-md font-jakarta font-bold">Mari Berkolaborasi Bersama</h2>
           <p className="max-w-2xl mx-auto text-lg mb-xl text-white opacity-80">
             Dukung misi kemanusiaan kami atau jadilah bagian dari perubahan di Timur Indonesia.
           </p>

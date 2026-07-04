@@ -26,7 +26,7 @@
 }
 
 .footer-brand {
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-jakarta), sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: white;
@@ -44,7 +44,7 @@
 
 .footer-heading {
   color: white;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-jakarta), sans-serif;
   font-size: 1.15rem;
   margin-bottom: var(--space-sm);
   position: relative;

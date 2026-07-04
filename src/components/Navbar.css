@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-jakarta), sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: var(--color-primary-dark);
@@ -157,7 +157,7 @@
 .mobile-nav-list li a {
   display: block;
   font-size: 1.5rem;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-jakarta), sans-serif;
   font-weight: 600;
   color: var(--color-text);
   padding: var(--space-sm);

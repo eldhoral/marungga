@@ -21,7 +21,7 @@ export default function About() {
       <section className="about-header section text-center">
         <div className="container relative z-10">
           <div className="organic-panel inline-block p-xl rounded-xl">
-            <h1 className="text-4xl md:text-5xl font-outfit font-bold text-primary-dark mb-md">Kenali Kami Lebih Dekat</h1>
+            <h1 className="text-4xl md:text-5xl font-jakarta font-bold text-primary-dark mb-md">Kenali Kami Lebih Dekat</h1>
             <p className="max-w-2xl mx-auto text-muted text-lg md:text-xl">
               Mengenal lebih jauh tentang jejak langkah dan visi misi Yayasan Masyarakat Tangguh Sejahtera (Marungga Foundation).
             </p>
@@ -45,7 +45,14 @@ export default function About() {
               </div>
             </div>
             <div className="story-image-container organic-panel">
-              <Image src="/about_placeholder.png" alt="Marungga Community" width={600} height={400} className="w-full h-auto object-cover rounded-xl" />
+              <Image 
+                src="/about_placeholder.png" 
+                alt="Marungga Community" 
+                width={600} 
+                height={400} 
+                className="w-full h-auto object-cover rounded-xl"
+                style={{ width: '100%', height: 'auto' }} 
+              />
             </div>
           </div>
 
@@ -75,7 +82,7 @@ export default function About() {
           <div className="text-center mb-xxl">
             <h2 className="section-title mb-md">Visi Organisasi</h2>
             <div className="organic-panel p-lg md:p-xl rounded-xl max-w-4xl mx-auto">
-              <p className="visi-text text-xl md:text-2xl font-outfit font-medium text-primary-dark leading-relaxed">
+              <p className="visi-text text-xl md:text-2xl font-jakarta font-medium text-primary-dark leading-relaxed">
                 "Mewujudkan Masyarakat Indonesia Timur yang Tangguh dan Sejahtera Melalui Kerja Pemberdayaan, Kemanusiaan yang memprioritaskan Perlindungan anak, Kesetaraan Gender dan Inklusi sosial berbasis penelitian."
               </p>
             </div>
@@ -147,8 +154,9 @@ export default function About() {
               <h3 className="org-group-title text-2xl font-bold text-primary-dark mb-md">Bidang-Bidang</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-lg mt-md org-bidang-grid">
                 <div className="flex flex-col items-center gap-sm">
-                  <h4 className="tier-title text-sm mb-xs text-primary font-bold uppercase tracking-wider text-center">Riset dan Dokumentasi<br/>Seni & Budaya</h4>
+                  <h4 className="tier-title text-sm mb-xs text-primary font-bold uppercase tracking-wider text-center">Riset dan Dokumentasi</h4>
                   <MemberCard role="Koordinator" name="Joseph Lamont" className="w-full" />
+                  <MemberCard role="Anggota" name="Wustari L. Mangundjaya" className="w-full" />
                 </div>
                 <div className="flex flex-col items-center gap-sm">
                   <h4 className="tier-title text-sm mb-xs text-primary font-bold uppercase tracking-wider text-center">Program dan<br/>Pengembangan</h4>

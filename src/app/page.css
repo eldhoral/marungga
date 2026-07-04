@@ -87,7 +87,7 @@
 }
 
 .metric-number {
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-jakarta), sans-serif;
   font-size: 3rem;
   font-weight: 800;
   color: var(--color-primary);
@@ -179,7 +179,6 @@
   padding: 1rem 2.5rem;
 }
 
-.hidden-mobile { display: block; }
 .show-mobile { display: none; }
 
 /* Responsive Adjustments */
@@ -223,7 +222,7 @@
   .metric-item { width: 100%; }
   .metric-divider { display: none; }
   
-  .hidden-mobile { display: none; }
+  .hidden-mobile { display: none !important; }
   .show-mobile { display: block; }
   .section-header { justify-content: center; text-align: center; }
   

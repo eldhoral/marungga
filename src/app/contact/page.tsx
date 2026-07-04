@@ -10,7 +10,7 @@ export default function Contact() {
       <section className="contact-header text-center">
         <div className="container relative z-10">
           <div className="organic-panel inline-block p-xl rounded-xl">
-            <h1 className="text-5xl font-outfit font-bold text-primary-dark mb-md">Hubungi Kami</h1>
+            <h1 className="text-5xl font-jakarta font-bold text-primary-dark mb-md">Hubungi Kami</h1>
             <p className="max-w-2xl mx-auto text-muted text-xl">
               Kami terbuka untuk berkolaborasi, berdiskusi, dan bergerak bersama. Silakan hubungi kami melalui informasi di bawah ini.
             </p>
@@ -26,7 +26,7 @@ export default function Contact() {
             <div className="contact-info-wrapper flex flex-col gap-lg">
               
               <div className="organic-panel contact-card">
-                <h2 className="text-2xl font-outfit font-bold text-primary-dark mb-md">Informasi Kontak</h2>
+                <h2 className="text-2xl font-jakarta font-bold text-primary-dark mb-md">Informasi Kontak</h2>
                 
                 <div className="contact-item">
                   <div className="contact-icon">📍</div>
@@ -74,7 +74,7 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="contact-form-wrapper">
               <div className="organic-panel form-card h-full">
-                <h2 className="text-3xl font-outfit font-bold text-primary-dark mb-sm">Kirim Pesan</h2>
+                <h2 className="text-3xl font-jakarta font-bold text-primary-dark mb-sm">Kirim Pesan</h2>
                 <p className="text-muted mb-lg">Punya ide kolaborasi atau sekadar ingin menyapa? Tinggalkan pesan di bawah ini.</p>
                 
                 <form className="contact-form flex flex-col gap-md">
