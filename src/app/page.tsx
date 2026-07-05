@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
 import ProgramCard from "@/components/ProgramCard";
+import { Baby, Handshake, HeartPulse, Sprout } from "lucide-react";
 // Force refresh
 import { ALL_PROGRAMS } from "../data/programs";
 import "./page.css";
@@ -74,25 +75,33 @@ export default function Home() {
 
           <div className="pillar-grid">
             <div className="pillar-card organic-panel">
-              <div className="pillar-icon">👶</div>
+              <div className="pillar-icon">
+                <Baby size={32} className="text-primary" />
+              </div>
               <h3>Perlindungan Anak</h3>
               <p>Menciptakan lingkungan aman dan mendukung perlindungan sosial yang komprehensif bagi anak-anak di masyarakat.</p>
             </div>
 
             <div className="pillar-card organic-panel">
-              <div className="pillar-icon">🤝</div>
+              <div className="pillar-icon">
+                <Handshake size={32} className="text-primary" />
+              </div>
               <h3>Inklusi & Kesetaraan Gender</h3>
               <p>Mengembangkan kapasitas sumber daya dengan prinsip kesetaraan gender dan inklusi sosial (GESI).</p>
             </div>
 
             <div className="pillar-card organic-panel">
-              <div className="pillar-icon">⛑️</div>
+              <div className="pillar-icon">
+                <HeartPulse size={32} className="text-primary" />
+              </div>
               <h3>Kesehatan & Bencana</h3>
               <p>Penanggulangan bencana dan peningkatan kesehatan secara partisipatif bagi masyarakat rentan.</p>
             </div>
 
             <div className="pillar-card organic-panel">
-              <div className="pillar-icon">🌱</div>
+              <div className="pillar-icon">
+                <Sprout size={32} className="text-primary" />
+              </div>
               <h3>Pelestarian Lingkungan</h3>
               <p>Pendampingan ekonomi dan budaya berbasis potensi lokal yang berkelanjutan.</p>
             </div>
