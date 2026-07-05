@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
 import ProgramCard from "@/components/ProgramCard";
+import { ResearchCarousel } from "@/components/ResearchCarousel";
 import { Baby, Handshake, HeartPulse, Sprout } from "lucide-react";
 // Force refresh
 import { createClient } from '@/utils/supabase/server';
@@ -153,119 +154,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Latest Programs Snippet */}
-      <section className="section bg-surface-alt relative">
-        <div className="container relative z-10">
-          <div className="flex justify-between items-end mb-md section-header">
-            <div>
-              <h2 className="section-title mb-xs">Aksi Nyata Terbaru</h2>
-              <p className="text-muted text-lg">Program-program yang telah dan sedang kami jalankan.</p>
-            </div>
-            <Button as={Link} href="/programs" variant="outline" className="hidden-mobile">Semua Program</Button>
-          </div>
-
-          <div className="programs-scroller">
-            <div className="programs-scroller-inner">
-              {recentPrograms?.map((program, index) => (
-                <ProgramCard
-                  key={program.id || index}
-                  slug={program.id} // use id as slug for routing
-                  title={program.title}
-                  description={program.description}
-                  date={program.year}
-                  funding={program.category}
-                  location={program.location}
-                  imageUrl={program.image_url || '/placeholder.jpg'}
-                  priority={index < 3}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="text-center mt-xl show-mobile">
-            <Button as={Link} href="/programs" variant="primary" className="btn-full-mobile">Lihat Semua Program</Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Produk Riset & Dokumentasi */}
-      <section className="section bg-background">
-        <div className="container">
-          <div className="text-center mb-xl">
-            <h2 className="section-title">Produk Riset dan Dokumentasi</h2>
-            <p className="max-w-2xl mx-auto text-muted text-lg">
-              Publikasi dan panduan berbasis bukti yang kami hasilkan untuk mendukung pendidikan dan pelestarian kebudayaan lokal.
-            </p>
-          </div>
-
-          <div className="research-marquee-container">
-            {researchProducts && researchProducts.length > 0 ? (
-              <div className="research-marquee-track scroll-left">
-                {[1, 2].map((groupIndex) => (
-                  <div key={groupIndex} className="research-marquee-group" aria-hidden={groupIndex === 2 ? "true" : "false"}>
-                    {researchProducts.map((product) => (
-                      <div key={product.id} className="research-card organic-panel text-center">
-                        <div className="research-placeholder bg-surface-alt flex items-center justify-center p-md border border-border border-dashed mb-sm rounded-md overflow-hidden relative" style={{ aspectRatio: '3/4' }}>
-                          {product.cover_url ? (
-                            <Image 
-                              src={product.cover_url} 
-                              alt={product.title} 
-                              fill 
-                              className="object-cover"
-                              sizes="(max-width: 768px) 250px, 320px" 
-                              priority={true}
-                            />
-                          ) : (
-                            <span className="text-muted text-sm italic">[Cover Buku]</span>
-                          )}
-                        </div>
-                        <h4 className="text-md font-bold text-text mt-2">{product.title}</h4>
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-muted text-center col-span-full">Belum ada produk riset.</p>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Galeri Dokumentasi Video */}
-      <section className="section bg-background">
-        <div className="container">
-          <div className="text-center mb-xl">
-            <h2 className="section-title">Galeri Dokumentasi Video</h2>
-            <p className="max-w-2xl mx-auto text-muted text-lg">
-              Saksikan langsung kegiatan dan cerita inspiratif dari lapangan.
-            </p>
-          </div>
-
-          <div className="video-grid">
-            {videos && videos.length > 0 ? (
-              videos.map((video) => (
-                <div key={video.id} className="video-card organic-panel">
-                  <div className="video-container">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${video.youtube_id}`}
-                      title={video.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      loading="lazy"
-                    ></iframe>
-                  </div>
-                  <h4 className="text-md font-bold text-text mt-4 text-center">{video.title}</h4>
-                </div>
-              ))
-            ) : (
-              <p className="text-muted text-center col-span-full">Belum ada video dokumentasi.</p>
-            )}
-          </div>
-        </div>
-      </section>
-
       {/* Mitra Marungga */}
       <section className="section bg-surface-alt">
         <div className="container">
@@ -312,6 +200,91 @@ export default async function Home() {
               })()
             ) : (
               <p className="text-muted text-center col-span-full">Belum ada mitra terdaftar.</p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Programs Snippet */}
+      <section className="section bg-background relative">
+        <div className="container relative z-10">
+          <div className="flex justify-between items-end mb-md section-header">
+            <div>
+              <h2 className="section-title mb-xs">Aksi Nyata Terbaru</h2>
+              <p className="text-muted text-lg">Program-program yang telah dan sedang kami jalankan.</p>
+            </div>
+            <Button as={Link} href="/programs" variant="outline" className="hidden-mobile">Semua Program</Button>
+          </div>
+
+          <div className="programs-scroller">
+            <div className="programs-scroller-inner">
+              {recentPrograms?.map((program, index) => (
+                <ProgramCard
+                  key={program.id || index}
+                  slug={program.id} // use id as slug for routing
+                  title={program.title}
+                  description={program.description}
+                  date={program.year}
+                  funding={program.category}
+                  location={program.location}
+                  imageUrl={program.image_url || '/placeholder.jpg'}
+                  priority={index < 3}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="text-center mt-xl show-mobile">
+            <Button as={Link} href="/programs" variant="primary" className="btn-full-mobile">Lihat Semua Program</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Produk Riset & Dokumentasi */}
+      <section className="section bg-surface-alt">
+        <div className="container">
+          <div className="text-center mb-xl">
+            <h2 className="section-title">Produk Riset dan Dokumentasi</h2>
+            <p className="max-w-2xl mx-auto text-muted text-lg">
+              Publikasi dan panduan berbasis bukti yang kami hasilkan untuk mendukung pendidikan dan pelestarian kebudayaan lokal.
+            </p>
+          </div>
+
+          <div className="mt-xl">
+            <ResearchCarousel products={researchProducts || []} />
+          </div>
+        </div>
+      </section>
+
+      {/* Galeri Dokumentasi Video */}
+      <section className="section bg-background">
+        <div className="container">
+          <div className="text-center mb-xl">
+            <h2 className="section-title">Galeri Dokumentasi Video</h2>
+            <p className="max-w-2xl mx-auto text-muted text-lg">
+              Saksikan langsung kegiatan dan cerita inspiratif dari lapangan.
+            </p>
+          </div>
+
+          <div className="video-grid">
+            {videos && videos.length > 0 ? (
+              videos.map((video) => (
+                <div key={video.id} className="video-card organic-panel">
+                  <div className="video-container">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.youtube_id}`}
+                      title={video.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                  <h4 className="text-md font-bold text-text mt-4 text-center">{video.title}</h4>
+                </div>
+              ))
+            ) : (
+              <p className="text-muted text-center col-span-full">Belum ada video dokumentasi.</p>
             )}
           </div>
         </div>
