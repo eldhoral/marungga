@@ -250,7 +250,7 @@
 
 .btn-cta-primary {
   background-color: var(--color-accent);
-  color: var(--color-primary-dark);
+  color: #ffffff;
 }
 
 .btn-cta-primary:hover {

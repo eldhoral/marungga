@@ -29,6 +29,7 @@ export default function Navbar() {
     { name: 'Tentang', path: '/about' },
     { name: 'Program', path: '/programs' },
     { name: 'Kontak', path: '/contact' },
+    { name: 'Donasi', path: '/donasi' },
   ];
 
   return (

@@ -12,11 +12,21 @@ export const revalidate = 60; // revalidate cache every 60 seconds
 export default async function Home() {
   const supabase = await createClient();
   
-  // Fetch home page content
-  const { data: contentData } = await supabase
-    .from('marungga_content_blocks')
-    .select('section_key, content_text')
-    .eq('page', 'home');
+  // Fetch data in parallel to optimize rendering time
+  const [
+    { data: contentData },
+    { data: recentPrograms }
+  ] = await Promise.all([
+    supabase
+      .from('marungga_content_blocks')
+      .select('section_key, content_text')
+      .eq('page', 'home'),
+    supabase
+      .from('marungga_programs')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(3)
+  ]);
 
   const content: Record<string, string> = {};
   contentData?.forEach(item => {
@@ -28,13 +38,6 @@ export default async function Home() {
   const heroTagline = content['hero_tagline'] || 'Marungga Foundation hadir untuk isu-isu kemanusiaan di Indonesia, memprioritaskan perlindungan anak, kesetaraan gender, dan inklusi sosial.';
   const ctaTitle = content['cta_title'] || 'Mari Berkolaborasi Bersama';
   const ctaTagline = content['cta_tagline'] || 'Dukung misi kemanusiaan kami atau jadilah bagian dari perubahan di Timur Indonesia. Bersama kita bisa membangun masyarakat yang lebih tangguh dan berdaya.';
-
-  // Fetch recent programs
-  const { data: recentPrograms } = await supabase
-    .from('marungga_programs')
-    .select('*')
-    .order('created_at', { ascending: false })
-    .limit(3);
 
   return (
     <div className="home-page animate-fade-in">
