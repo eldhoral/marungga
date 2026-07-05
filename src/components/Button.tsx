@@ -6,6 +6,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   as?: React.ElementType;
   href?: string;
+  target?: string;
+  rel?: string;
 }
 
 export default function Button({ variant = 'primary', children, as: Component = 'button', className = '', ...props }: ButtonProps) {
