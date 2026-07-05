@@ -187,12 +187,10 @@
 
 .about-visi__label {
   font-family: var(--font-jakarta), sans-serif;
-  font-size: 0.85rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
   color: var(--color-accent);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .about-visi__quote {
@@ -204,11 +202,10 @@
 
 .about-visi__quote p {
   font-family: var(--font-jakarta), sans-serif;
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1.125rem;
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.92);
   line-height: 1.6;
-  font-style: italic;
 }
 
 /* ---- Misi Grid ---- */

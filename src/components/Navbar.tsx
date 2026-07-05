@@ -24,6 +24,10 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
   const navItems = [
     { name: 'Beranda', path: '/' },
     { name: 'Tentang', path: '/about' },

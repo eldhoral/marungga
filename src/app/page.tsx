@@ -80,8 +80,8 @@ export default async function Home() {
             </div>
             <div className="metric-divider"></div>
             <div className="metric-item">
-              <span className="metric-number">13+</span>
-              <span className="metric-label">Anggota Aktif</span>
+              <span className="metric-number">15+</span>
+              <span className="metric-label">Program Terlaksana</span>
             </div>
             <div className="metric-divider"></div>
             <div className="metric-item">

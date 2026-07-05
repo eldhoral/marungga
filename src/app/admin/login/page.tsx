@@ -1,26 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { Turnstile } from '@marsidev/react-turnstile'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
+import Button from '@/components/Button'
 import { login } from './actions'
+import { ShieldCheck } from 'lucide-react'
 
 export default function LoginPage() {
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [captchaToken, setCaptchaToken] = useState<string | null>(null)
   const router = useRouter()
+  const turnstileRef = useRef<TurnstileInstance | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError(null)
     
     if (!captchaToken) {
-      setError('Please complete the CAPTCHA')
+      setError('Silakan selesaikan CAPTCHA terlebih dahulu')
       return
     }
 
@@ -33,52 +34,74 @@ export default function LoginPage() {
     if (result?.error) {
       setError(result.error)
       setIsLoading(false)
+      setCaptchaToken(null)
+      turnstileRef.current?.reset()
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">Admin Login</CardTitle>
-          <CardDescription>
-            Enter your email and password to access the CMS
-          </CardDescription>
-        </CardHeader>
-        <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" name="email" type="email" placeholder="admin@marungga.org" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" name="password" type="password" required />
-            </div>
-            
-            <div className="flex justify-center pt-2">
-              <Turnstile
-                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'} // fallback to testing key
-                onSuccess={(token) => setCaptchaToken(token)}
-                options={{
-                  theme: 'light'
-                }}
-              />
-            </div>
+    <div className="min-h-screen flex items-center justify-center bg-surface relative overflow-hidden p-4">
+      {/* Decorative Blobs */}
+      <div className="blob blob-primary" style={{ top: '-10%', left: '-10%', width: '500px', height: '500px', opacity: 0.1 }}></div>
+      <div className="blob blob-secondary" style={{ bottom: '-10%', right: '-10%', width: '400px', height: '400px', opacity: 0.1 }}></div>
+      
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl border border-border/50 p-8 md:p-10 relative z-10">
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center p-4 bg-primary/10 rounded-full mb-4">
+            <ShieldCheck className="w-10 h-10 text-primary" />
+          </div>
+          <h1 className="text-3xl font-bold text-primary-dark mb-2">Admin Portal</h1>
+          <p className="text-muted-foreground">
+            Masuk untuk mengelola konten dan program Yayasan Marungga
+          </p>
+        </div>
 
-            {error && (
-              <div className="text-sm text-red-500 font-medium text-center">
-                {error}
-              </div>
-            )}
-          </CardContent>
-          <CardFooter>
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Signing in...' : 'Sign in'}
-            </Button>
-          </CardFooter>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="email" className="text-text font-medium">Email</Label>
+            <Input 
+              id="email" 
+              name="email" 
+              type="email" 
+              placeholder="admin@marungga.org" 
+              required 
+              className="rounded-xl border-border focus-visible:ring-primary h-12"
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="password" className="text-text font-medium">Password</Label>
+            <Input 
+              id="password" 
+              name="password" 
+              type="password" 
+              required 
+              className="rounded-xl border-border focus-visible:ring-primary h-12"
+            />
+          </div>
+          
+          <div className="flex justify-center py-2">
+            <Turnstile
+              ref={turnstileRef}
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'} // fallback to testing key
+              onSuccess={(token) => setCaptchaToken(token)}
+              options={{
+                theme: 'light'
+              }}
+            />
+          </div>
+
+          {error && (
+            <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-600 font-medium text-center">
+              {error}
+            </div>
+          )}
+          
+          <Button type="submit" variant="primary" className="w-full h-12 text-lg" disabled={isLoading}>
+            {isLoading ? 'Mengautentikasi...' : 'Masuk Dashboard'}
+          </Button>
         </form>
-      </Card>
+      </div>
     </div>
   )
 }

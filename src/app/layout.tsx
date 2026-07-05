@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en" className={cn(inter.variable, jakarta.variable, "font-sans", geist.variable)}>
       <body suppressHydrationWarning style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <Navbar />
-        <main style={{ flex: 1, overflowX: 'hidden', position: 'relative' }}>
+        <main style={{ flex: 1, position: 'relative' }}>
           {children}
         </main>
         <Footer />
