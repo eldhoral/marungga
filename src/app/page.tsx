@@ -15,7 +15,7 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-image-container">
           <Image
-            src="/hero_placeholder.png"
+            src="/IMG-20250526-WA0049.jpg"
             alt="Marungga Foundation Hero - Landscape"
             fill
             sizes="100vw"

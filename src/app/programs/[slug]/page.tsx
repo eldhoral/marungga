@@ -56,7 +56,7 @@ export default async function ProgramDetail({ params }: { params: Promise<{ slug
           <div className="detail-main organic-panel">
             <div className="detail-image-container relative w-full">
               <Image 
-                src={program.imageUrl || "/hero_placeholder.png"} 
+                src={program.imageUrl || "/IMG-20250526-WA0049.jpg"} 
                 alt={program.title} 
                 fill
                 sizes="(max-width: 768px) 100vw, 80vw"

@@ -17,7 +17,7 @@ export default function ProgramCard({ slug, title, description, date, funding, i
     <div className="program-card organic-panel">
       <div className="program-image-wrapper">
         <Image 
-          src={imageUrl || "/hero_placeholder.png"} 
+          src={imageUrl || "/IMG-20250526-WA0049.jpg"} 
           alt={title} 
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
