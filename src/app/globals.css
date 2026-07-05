@@ -291,10 +291,14 @@ a {
 .blob {
   position: absolute;
   filter: blur(80px);
+  -webkit-filter: blur(80px);
   z-index: -1;
   opacity: 0.6;
   border-radius: 50%;
-  animation: blobFloat 10s infinite alternate;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
 }
 .blob-primary {
   background: var(--color-primary-light);

@@ -186,8 +186,12 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(60px);
+  -webkit-filter: blur(60px);
   opacity: 0.6;
-  animation: float 15s infinite ease-in-out alternate;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .cta-blob.blob-1 {
@@ -389,7 +393,11 @@
 .partner-marquee-track {
   display: flex;
   width: max-content;
-  gap: var(--space-md);
+  gap: var(--space-xl);
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .partner-marquee-track.scroll-left {
