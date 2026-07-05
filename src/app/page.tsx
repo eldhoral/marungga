@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import ProgramCard from "@/components/ProgramCard";
 import { ResearchCarousel } from "@/components/ResearchCarousel";
 import { Baby, Handshake, HeartPulse, Sprout } from "lucide-react";
+import LiteYouTube from '@/components/LiteYouTube';
 // Force refresh
 import { createClient } from '@/utils/supabase/server';
 import "./page.css";
@@ -271,14 +272,10 @@ export default async function Home() {
               videos.map((video) => (
                 <div key={video.id} className="video-card organic-panel">
                   <div className="video-container">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${video.youtube_id}`}
-                      title={video.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      loading="lazy"
-                    ></iframe>
+                    <LiteYouTube 
+                        id={video.youtube_id} 
+                        title={video.title} 
+                    />
                   </div>
                   <h4 className="text-md font-bold text-text mt-4 text-center">{video.title}</h4>
                 </div>
