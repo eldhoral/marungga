@@ -74,7 +74,7 @@ export default function About() {
                   Merupakan organisasi berbasis masyarakat yang lahir atas kemauan dan kesadaran sekelompok orang yang terorganisir dan peduli terhadap isu-isu kemanusiaan di Indonesia, khususnya Wilayah Timur Indonesia.
                 </p>
                 <p className="about-section__body">
-                  Berpusat di Kota Kupang, NTT, Marungga Foundation memiliki 13 anggota profesional dengan rekam jejak di bidang pengembangan masyarakat adat, perlindungan anak, kesetaraan gender, advokasi, PRB, dan inklusi sosial.
+                  Berpusat di Kota Kupang, NTT, Marungga Foundation memiliki 14 anggota profesional dengan rekam jejak di bidang pengembangan masyarakat adat, perlindungan anak, kesetaraan gender, advokasi, PRB, dan inklusi sosial.
                 </p>
               </div>
               <div className="about-two-col__image">
@@ -126,7 +126,7 @@ export default function About() {
                     <span className="about-stat__label">Tahun Berdiri</span>
                   </div>
                   <div className="about-stat">
-                    <span className="about-stat__number">13</span>
+                    <span className="about-stat__number">14</span>
                     <span className="about-stat__label">Anggota Profesional</span>
                   </div>
                   <div className="about-stat">
@@ -235,6 +235,8 @@ export default function About() {
                     <h4 className="org-subgroup__label">Riset &amp; Dokumentasi</h4>
                     <MemberCard role="Koordinator" name="Joseph Lamont" />
                     <MemberCard role="Anggota" name="Wustari L. Mangundjaya" />
+                    <MemberCard role="Anggota" name="Reftalina Rachman" />
+                    <MemberCard role="Anggota" name="Faisal Magrie" />
                   </div>
                   <div className="org-subgroup">
                     <h4 className="org-subgroup__label">Program &amp; Pengembangan</h4>
