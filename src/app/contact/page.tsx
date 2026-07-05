@@ -1,7 +1,29 @@
 import Button from "@/components/Button";
+import { createClient } from "@/utils/supabase/server";
 import "./page.css";
 
-export default function Contact() {
+export const revalidate = 60;
+
+export default async function Contact() {
+  const supabase = await createClient();
+  
+  // Fetch contact page content
+  const { data: contentData } = await supabase
+    .from('marungga_content_blocks')
+    .select('section_key, content_text')
+    .eq('page', 'contact');
+
+  const content: Record<string, string> = {};
+  contentData?.forEach(item => {
+    content[item.section_key] = item.content_text;
+  });
+
+  // Default content fallbacks
+  const heroTitle = content['hero_title'] || 'Hubungi Kami';
+  const heroDescription = content['hero_description'] || 'Kami terbuka untuk berkolaborasi, berdiskusi, dan bergerak bersama. Silakan hubungi kami melalui informasi di bawah ini.';
+  const formTitle = content['form_title'] || 'Kirim Pesan';
+  const formDescription = content['form_description'] || 'Punya ide kolaborasi atau sekadar ingin menyapa? Tinggalkan pesan di bawah ini.';
+
   return (
     <div className="contact-page animate-fade-in relative">
       <div className="blob blob-primary" style={{ top: '20%', left: '-10%', width: '600px', height: '600px', opacity: 0.2 }}></div>
@@ -10,9 +32,8 @@ export default function Contact() {
       <section className="contact-header text-center">
         <div className="container relative z-10">
           <div className="organic-panel inline-block p-xl rounded-xl">
-            <h1 className="text-5xl font-jakarta font-bold text-primary-dark mb-md">Hubungi Kami</h1>
-            <p className="max-w-2xl mx-auto text-muted text-xl">
-              Kami terbuka untuk berkolaborasi, berdiskusi, dan bergerak bersama. Silakan hubungi kami melalui informasi di bawah ini.
+            <h1 className="text-5xl font-jakarta font-bold text-primary-dark mb-md" dangerouslySetInnerHTML={{ __html: heroTitle }}></h1>
+            <p className="max-w-2xl mx-auto text-muted text-xl" dangerouslySetInnerHTML={{ __html: heroDescription }}>
             </p>
           </div>
         </div>
@@ -88,8 +109,8 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="contact-form-wrapper">
               <div className="organic-panel form-card h-full">
-                <h2 className="text-3xl font-jakarta font-bold text-primary-dark mb-sm">Kirim Pesan</h2>
-                <p className="text-muted mb-lg">Punya ide kolaborasi atau sekadar ingin menyapa? Tinggalkan pesan di bawah ini.</p>
+                <h2 className="text-3xl font-jakarta font-bold text-primary-dark mb-sm" dangerouslySetInnerHTML={{ __html: formTitle }}></h2>
+                <div className="text-muted mb-lg" dangerouslySetInnerHTML={{ __html: formDescription }}></div>
                 
                 <form className="contact-form flex flex-col gap-md">
                   <div className="form-row">

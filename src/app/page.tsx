@@ -4,10 +4,38 @@ import Button from "@/components/Button";
 import ProgramCard from "@/components/ProgramCard";
 import { Baby, Handshake, HeartPulse, Sprout } from "lucide-react";
 // Force refresh
-import { ALL_PROGRAMS } from "../data/programs";
+import { createClient } from '@/utils/supabase/server';
 import "./page.css";
 
-export default function Home() {
+export const revalidate = 60; // revalidate cache every 60 seconds
+
+export default async function Home() {
+  const supabase = await createClient();
+  
+  // Fetch home page content
+  const { data: contentData } = await supabase
+    .from('marungga_content_blocks')
+    .select('section_key, content_text')
+    .eq('page', 'home');
+
+  const content: Record<string, string> = {};
+  contentData?.forEach(item => {
+    content[item.section_key] = item.content_text;
+  });
+
+  // Default content fallbacks
+  const heroTitle = content['hero_title'] || 'Membangun <span className="text-primary">Masyarakat Timur</span> yang Tangguh';
+  const heroTagline = content['hero_tagline'] || 'Marungga Foundation hadir untuk isu-isu kemanusiaan di Indonesia, memprioritaskan perlindungan anak, kesetaraan gender, dan inklusi sosial.';
+  const ctaTitle = content['cta_title'] || 'Mari Berkolaborasi Bersama';
+  const ctaTagline = content['cta_tagline'] || 'Dukung misi kemanusiaan kami atau jadilah bagian dari perubahan di Timur Indonesia. Bersama kita bisa membangun masyarakat yang lebih tangguh dan berdaya.';
+
+  // Fetch recent programs
+  const { data: recentPrograms } = await supabase
+    .from('marungga_programs')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(3);
+
   return (
     <div className="home-page animate-fade-in">
 
@@ -27,11 +55,9 @@ export default function Home() {
 
         <div className="container hero-content">
           <div className="organic-panel hero-panel">
-            <h1 className="hero-title">
-              Membangun <span className="text-primary">Masyarakat Timur</span> yang Tangguh
+            <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: heroTitle }}>
             </h1>
-            <p className="hero-tagline">
-              Marungga Foundation hadir untuk isu-isu kemanusiaan di Indonesia, memprioritaskan perlindungan anak, kesetaraan gender, dan inklusi sosial.
+            <p className="hero-tagline" dangerouslySetInnerHTML={{ __html: heroTagline }}>
             </p>
             <div className="hero-actions">
               <Button as={Link} href="/programs" variant="primary" className="btn-full-mobile">Jelajahi Program</Button>
@@ -122,21 +148,19 @@ export default function Home() {
 
           <div className="programs-scroller">
             <div className="programs-scroller-inner">
-              {['proyek-bisa-nutrisi', 'proyek-lii-marapu', 'innovation-lab-2025'].map((slug, index) => {
-                const program = ALL_PROGRAMS.find(p => p.slug === slug);
-                if (!program) return null;
-                return (
+              {recentPrograms?.map((program, index) => (
                   <ProgramCard
-                    key={index}
-                    slug={program.slug}
+                    key={program.id || index}
+                    slug={program.id} // use id as slug for routing
                     title={program.title}
                     description={program.description}
-                    date={program.date}
-                    funding={program.funding}
-                    imageUrl={program.imageUrl}
+                    date={program.year}
+                    funding={program.category}
+                    location={program.location}
+                    imageUrl={program.image_url || '/placeholder.jpg'}
+                    priority={index < 3}
                   />
-                );
-              })}
+              ))}
             </div>
           </div>
 
@@ -156,11 +180,9 @@ export default function Home() {
 
         <div className="container relative z-10">
           <div className="cta-content-wrapper organic-panel glass-panel-dark">
-            <h2 className="text-3xl md:text-5xl text-white mb-md font-jakarta font-bold">Mari Berkolaborasi Bersama</h2>
-            <p className="max-w-2xl mx-auto text-lg md:text-xl mb-xl text-white opacity-90 leading-relaxed">
-              Dukung misi kemanusiaan kami atau jadilah bagian dari perubahan di Timur Indonesia.
-              Bersama kita bisa membangun masyarakat yang lebih tangguh dan berdaya.
-            </p>
+            <h2 className="text-3xl md:text-5xl text-white mb-md font-jakarta font-bold" dangerouslySetInnerHTML={{ __html: ctaTitle }}></h2>
+            <div className="max-w-2xl mx-auto text-lg md:text-xl mb-xl text-white opacity-90 leading-relaxed" dangerouslySetInnerHTML={{ __html: ctaTagline }}>
+            </div>
             <div className="flex justify-center gap-sm flex-wrap">
               <Button as={Link} href="/contact" className="cta-btn btn-full-mobile btn-cta-primary">Hubungi Kami Sekarang</Button>
               <Button as={Link} href="/programs" className="cta-btn btn-full-mobile btn-cta-outline">Jelajahi Program</Button>

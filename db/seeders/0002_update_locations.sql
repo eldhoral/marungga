@@ -1,0 +1,18 @@
+UPDATE public.marungga_programs SET location = 'Kecamatan Sulamu, Kab. Kupang' WHERE title = 'Asesmen Sekolah & WASH';
+UPDATE public.marungga_programs SET location = 'Makassar, Sulawesi Selatan' WHERE title = 'Pendampingan TAWA Semesta';
+UPDATE public.marungga_programs SET location = 'Desa Wanggabewa, Sumba Timur' WHERE title = 'Distribusi Perlengkapan Sekolah';
+UPDATE public.marungga_programs SET location = 'Kota Kupang' WHERE title = 'Pengembangan Anak Muda';
+UPDATE public.marungga_programs SET location = 'Kabupaten TTU dan Kupang' WHERE title = 'Suplementasi WIFA';
+UPDATE public.marungga_programs SET location = 'Sumba Barat Daya' WHERE title = 'Kapasitas Eks Pekerja Migran';
+UPDATE public.marungga_programs SET location = 'Kab. dan Kota Kupang' WHERE title = 'Respon Bencana Seroja';
+UPDATE public.marungga_programs SET location = 'Online / NTT' WHERE title = 'Pelatihan Menulis Kreatif';
+UPDATE public.marungga_programs SET location = 'Kabupaten TTU & Kupang' WHERE title = 'Proyek BISA (Nutrisi)';
+UPDATE public.marungga_programs SET location = 'Sumba Timur' WHERE title = 'Proyek Lii Marapu';
+UPDATE public.marungga_programs SET location = 'Kupang / Nasional' WHERE title = 'Dukungan Lii Marapu';
+UPDATE public.marungga_programs SET location = 'Provinsi NTT' WHERE title = 'Supportive Supervision BISA';
+UPDATE public.marungga_programs SET location = 'Puskesmas se-NTT' WHERE title = 'Training VAS Supply Chain';
+UPDATE public.marungga_programs SET location = 'Kabupaten Sabu Raijua' WHERE title = 'Dokumentasi Karya Para Maestro Kepercayaan dan Kebudayaan Jingitiu di Kabupaten Sabu Raijua.';
+UPDATE public.marungga_programs SET location = 'Kabupaten Kupang' WHERE title = 'Kurikulum Operasional PAUD';
+UPDATE public.marungga_programs SET location = 'Nusa Tenggara Timur' WHERE title = 'PELITA PAUD';
+UPDATE public.marungga_programs SET location = 'Kantor Marungga Foundation' WHERE title = 'Innovation Lab 2025';
+UPDATE public.marungga_programs SET location = 'Peternakan Lokal Kupang' WHERE title = 'Ketahanan Pangan & Ternak';
