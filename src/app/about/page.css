@@ -2,8 +2,16 @@
    About Page — Clean & Organic
    ============================ */
 
-.about-page {
-  padding-top: 60px;
+.about-header {
+  padding-top: 150px;
+  padding-bottom: var(--space-xl);
+}
+
+@media (max-width: 768px) {
+  .about-header {
+    padding-top: 100px;
+    padding-bottom: var(--space-md);
+  }
 }
 
 /* ---- Lazy Load Animation ---- */
@@ -26,39 +34,7 @@
   }
 }
 
-/* ---- Hero ---- */
-.about-hero {
-  padding: 6rem 0 4rem;
-  background: linear-gradient(170deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-  color: white;
-  text-align: center;
-}
 
-.about-hero__label {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--color-accent);
-  margin-bottom: var(--space-sm);
-}
-
-.about-hero__title {
-  font-family: var(--font-jakarta), sans-serif;
-  font-size: 2.75rem;
-  font-weight: 800;
-  color: white;
-  line-height: 1.15;
-  margin-bottom: var(--space-md);
-}
-
-.about-hero__subtitle {
-  font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
 
 /* ---- Sections ---- */
 .about-section {
@@ -468,10 +444,6 @@
 
 /* ---- Responsive ---- */
 @media (min-width: 768px) {
-  .about-hero__title {
-    font-size: 3.5rem;
-  }
-
   .about-two-col {
     grid-template-columns: 5fr 7fr;
   }
@@ -507,14 +479,6 @@
 }
 
 @media (max-width: 767px) {
-  .about-hero {
-    padding: 5rem 0 3rem;
-  }
-
-  .about-hero__title {
-    font-size: 2rem;
-  }
-
   .about-two-col--reverse .about-two-col__visual {
     order: -1;
   }

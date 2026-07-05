@@ -47,16 +47,19 @@ const MemberCard = ({ role, name, featured = false }: { role: string, name: stri
 
 export default function About() {
   return (
-    <div className="about-page">
+    <div className="about-page animate-fade-in relative">
       
+      <div className="blob blob-accent" style={{ top: '5%', right: '10%', width: '400px', height: '400px', opacity: 0.3 }}></div>
+
       {/* Hero — no lazy load, always visible first */}
-      <section className="about-hero">
-        <div className="container">
-          <p className="about-hero__label">Tentang Kami</p>
-          <h1 className="about-hero__title">Kenali Kami Lebih Dekat</h1>
-          <p className="about-hero__subtitle">
-            Jejak langkah dan visi misi Yayasan Masyarakat Tangguh Sejahtera (Marungga Foundation) di kawasan Timur Indonesia.
-          </p>
+      <section className="about-header text-center">
+        <div className="container relative z-10">
+          <div className="organic-panel inline-block p-xl rounded-xl">
+            <h1 className="text-5xl font-jakarta font-bold text-primary-dark mb-md">Tentang Kami</h1>
+            <p className="max-w-2xl mx-auto text-muted text-xl">
+              Kenali Kami Lebih Dekat. Jejak langkah dan visi misi Yayasan Masyarakat Tangguh Sejahtera (Marungga Foundation) di kawasan Timur Indonesia.
+            </p>
+          </div>
         </div>
       </section>
 
