@@ -18,6 +18,7 @@ type Program = {
   location?: string | null
   category?: string | null
   image_url?: string | null
+  order_index?: number
 }
 
 export function ProgramForm({ program }: { program?: Program }) {
@@ -72,6 +73,12 @@ export function ProgramForm({ program }: { program?: Program }) {
               <Label htmlFor="category">Category / Funding</Label>
               <Input id="category" name="category" defaultValue={program?.category || ''} />
             </div>
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="order_index">Order Index (Urutan)</Label>
+            <Input id="order_index" name="order_index" type="number" defaultValue={program?.order_index || 0} />
+            <p className="text-sm text-gray-500">Angka yang lebih kecil akan tampil lebih awal (di atas).</p>
           </div>
 
           <div className="space-y-2">

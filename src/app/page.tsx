@@ -11,11 +11,14 @@ export const revalidate = 60; // revalidate cache every 60 seconds
 
 export default async function Home() {
   const supabase = await createClient();
-  
+
   // Fetch data in parallel to optimize rendering time
   const [
     { data: contentData },
-    { data: recentPrograms }
+    { data: recentPrograms },
+    { data: researchProducts },
+    { data: partnersData },
+    { data: videos }
   ] = await Promise.all([
     supabase
       .from('marungga_content_blocks')
@@ -24,8 +27,20 @@ export default async function Home() {
     supabase
       .from('marungga_programs')
       .select('*')
-      .order('created_at', { ascending: false })
-      .limit(3)
+      .order('order_index', { ascending: true })
+      .limit(3),
+    supabase
+      .from('marungga_research_products')
+      .select('*')
+      .order('order_index', { ascending: true }),
+    supabase
+      .from('marungga_partners')
+      .select('*')
+      .order('order_index', { ascending: true }),
+    supabase
+      .from('marungga_videos')
+      .select('*')
+      .order('order_index', { ascending: true })
   ]);
 
   const content: Record<string, string> = {};
@@ -34,8 +49,8 @@ export default async function Home() {
   });
 
   // Default content fallbacks
-  const heroTitle = content['hero_title'] || 'Membangun <span className="text-primary">Masyarakat Timur</span> yang Tangguh';
-  const heroTagline = content['hero_tagline'] || 'Marungga Foundation hadir untuk isu-isu kemanusiaan di Indonesia, memprioritaskan perlindungan anak, kesetaraan gender, dan inklusi sosial.';
+  const heroTitle = content['hero_title'] || 'Menuju Masyarakat <span className="text-primary">Tangguh dan Sejahtera</span>';
+  const heroTagline = content['hero_tagline'] || 'Marungga Foundation hadir untuk isu-isu kemanusiaan di kawasan timur Indonesia, memprioritaskan pendidikan, kesehatan, ekonomi, penanggulangan bencana dan perubahan iklim, berbasis bukti dan riset.';
   const ctaTitle = content['cta_title'] || 'Mari Berkolaborasi Bersama';
   const ctaTagline = content['cta_tagline'] || 'Dukung misi kemanusiaan kami atau jadilah bagian dari perubahan di Timur Indonesia. Bersama kita bisa membangun masyarakat yang lebih tangguh dan berdaya.';
 
@@ -85,7 +100,7 @@ export default async function Home() {
             </div>
             <div className="metric-divider"></div>
             <div className="metric-item">
-              <span className="metric-number">NTT</span>
+              <span className="metric-number">Indonesia Wilayah Timur</span>
               <span className="metric-label">Wilayah Fokus</span>
             </div>
           </div>
@@ -107,32 +122,32 @@ export default async function Home() {
               <div className="pillar-icon">
                 <Baby size={32} className="text-primary" />
               </div>
-              <h3>Perlindungan Anak</h3>
-              <p>Menciptakan lingkungan aman dan mendukung perlindungan sosial yang komprehensif bagi anak-anak di masyarakat.</p>
-            </div>
-
-            <div className="pillar-card organic-panel">
-              <div className="pillar-icon">
-                <Handshake size={32} className="text-primary" />
-              </div>
-              <h3>Inklusi & Kesetaraan Gender</h3>
-              <p>Mengembangkan kapasitas sumber daya dengan prinsip kesetaraan gender dan inklusi sosial (GESI).</p>
+              <h3>Pendidikan</h3>
+              <p>Mengembangkan pendidikan berkeadilan bagi anak (0-18 tahun) yang berkualitas, inklusif, adaptif, dan kontekstual.</p>
             </div>
 
             <div className="pillar-card organic-panel">
               <div className="pillar-icon">
                 <HeartPulse size={32} className="text-primary" />
               </div>
-              <h3>Kesehatan & Bencana</h3>
-              <p>Penanggulangan bencana dan peningkatan kesehatan secara partisipatif bagi masyarakat rentan.</p>
+              <h3>Kesehatan</h3>
+              <p>Meningkatkan kapasitas penyedia layanan kesehatan bagi ibu dan anak (0-18 tahun) bekerja sama dengan pemangku kepentingan.</p>
+            </div>
+
+            <div className="pillar-card organic-panel">
+              <div className="pillar-icon">
+                <Handshake size={32} className="text-primary" />
+              </div>
+              <h3>Ekonomi</h3>
+              <p>Mengembangkan model usaha berkelanjutan berbasis kemitraan bersama masyarakat dengan menyertakan nilai dan praktik kearifan lokal.</p>
             </div>
 
             <div className="pillar-card organic-panel">
               <div className="pillar-icon">
                 <Sprout size={32} className="text-primary" />
               </div>
-              <h3>Pelestarian Lingkungan</h3>
-              <p>Pendampingan ekonomi dan budaya berbasis potensi lokal yang berkelanjutan.</p>
+              <h3>Penanggulangan Bencana dan Perubahan Iklim</h3>
+              <p>Berpartisipasi dalam penanggulangan bencana dan perubahan iklim, berkolaborasi dengan mitra pembangunan lain dan pemangku kepentingan terkait.</p>
             </div>
           </div>
         </div>
@@ -152,23 +167,152 @@ export default async function Home() {
           <div className="programs-scroller">
             <div className="programs-scroller-inner">
               {recentPrograms?.map((program, index) => (
-                  <ProgramCard
-                    key={program.id || index}
-                    slug={program.id} // use id as slug for routing
-                    title={program.title}
-                    description={program.description}
-                    date={program.year}
-                    funding={program.category}
-                    location={program.location}
-                    imageUrl={program.image_url || '/placeholder.jpg'}
-                    priority={index < 3}
-                  />
+                <ProgramCard
+                  key={program.id || index}
+                  slug={program.id} // use id as slug for routing
+                  title={program.title}
+                  description={program.description}
+                  date={program.year}
+                  funding={program.category}
+                  location={program.location}
+                  imageUrl={program.image_url || '/placeholder.jpg'}
+                  priority={index < 3}
+                />
               ))}
             </div>
           </div>
 
           <div className="text-center mt-xl show-mobile">
             <Button as={Link} href="/programs" variant="primary" className="btn-full-mobile">Lihat Semua Program</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Produk Riset & Dokumentasi */}
+      <section className="section bg-background">
+        <div className="container">
+          <div className="text-center mb-xl">
+            <h2 className="section-title">Produk Riset dan Dokumentasi</h2>
+            <p className="max-w-2xl mx-auto text-muted text-lg">
+              Publikasi dan panduan berbasis bukti yang kami hasilkan untuk mendukung pendidikan dan pelestarian kebudayaan lokal.
+            </p>
+          </div>
+
+          <div className="research-marquee-container">
+            {researchProducts && researchProducts.length > 0 ? (
+              <div className="research-marquee-track scroll-left">
+                {[1, 2].map((groupIndex) => (
+                  <div key={groupIndex} className="research-marquee-group" aria-hidden={groupIndex === 2 ? "true" : "false"}>
+                    {researchProducts.map((product) => (
+                      <div key={product.id} className="research-card organic-panel text-center">
+                        <div className="research-placeholder bg-surface-alt flex items-center justify-center p-md border border-border border-dashed mb-sm rounded-md overflow-hidden relative" style={{ aspectRatio: '3/4' }}>
+                          {product.cover_url ? (
+                            <Image 
+                              src={product.cover_url} 
+                              alt={product.title} 
+                              fill 
+                              className="object-cover"
+                              sizes="(max-width: 768px) 250px, 320px" 
+                              priority={true}
+                            />
+                          ) : (
+                            <span className="text-muted text-sm italic">[Cover Buku]</span>
+                          )}
+                        </div>
+                        <h4 className="text-md font-bold text-text mt-2">{product.title}</h4>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-muted text-center col-span-full">Belum ada produk riset.</p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Galeri Dokumentasi Video */}
+      <section className="section bg-background">
+        <div className="container">
+          <div className="text-center mb-xl">
+            <h2 className="section-title">Galeri Dokumentasi Video</h2>
+            <p className="max-w-2xl mx-auto text-muted text-lg">
+              Saksikan langsung kegiatan dan cerita inspiratif dari lapangan.
+            </p>
+          </div>
+
+          <div className="video-grid">
+            {videos && videos.length > 0 ? (
+              videos.map((video) => (
+                <div key={video.id} className="video-card organic-panel">
+                  <div className="video-container">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.youtube_id}`}
+                      title={video.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                  <h4 className="text-md font-bold text-text mt-4 text-center">{video.title}</h4>
+                </div>
+              ))
+            ) : (
+              <p className="text-muted text-center col-span-full">Belum ada video dokumentasi.</p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Mitra Marungga */}
+      <section className="section bg-surface-alt">
+        <div className="container">
+          <div className="text-center mb-lg">
+            <h2 className="section-title">Mitra Marungga</h2>
+            <p className="text-muted">Organisasi mitra dan donor yang berkolaborasi bersama kami.</p>
+          </div>
+
+          <div className="partner-marquee-container">
+            {partnersData && partnersData.length > 0 ? (
+              (() => {
+                // Split partners into 3 rows
+                const third = Math.ceil(partnersData.length / 3);
+                const rows = [
+                  partnersData.slice(0, third),
+                  partnersData.slice(third, third * 2),
+                  partnersData.slice(third * 2)
+                ];
+                
+                return rows.map((row, rowIndex) => (
+                  <div key={rowIndex} className={`partner-marquee-track ${rowIndex % 2 === 1 ? 'scroll-right' : 'scroll-left'}`}>
+                    {/* Render the row twice for infinite seamless loop */}
+                    {[1, 2].map((groupIndex) => (
+                      <div key={groupIndex} className="partner-marquee-group" aria-hidden={groupIndex === 2 ? "true" : "false"}>
+                        {row.map((partner) => (
+                          <div key={partner.id} className="partner-card bg-background border border-border flex items-center justify-center p-sm rounded text-center relative overflow-hidden">
+                            {partner.logo_url ? (
+                              <Image 
+                                src={partner.logo_url} 
+                                alt={partner.name} 
+                                fill 
+                                className="object-contain p-2"
+                                sizes="(max-width: 768px) 150px, 200px" 
+                              />
+                            ) : (
+                              <span className="text-xs font-semibold text-muted-foreground z-10">{partner.name}</span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                ));
+              })()
+            ) : (
+              <p className="text-muted text-center col-span-full">Belum ada mitra terdaftar.</p>
+            )}
           </div>
         </div>
       </section>

@@ -2,13 +2,14 @@ import { createClient } from '@/utils/supabase/server'
 import { TeamForm } from '../TeamForm'
 import { notFound } from 'next/navigation'
 
-export default async function EditTeamMemberPage({ params }: { params: { id: string } }) {
+export default async function EditTeamMemberPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const supabase = await createClient()
   
   const { data: member, error } = await supabase
     .from('marungga_team_members')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', id)
     .single()
 
   if (error || !member) {

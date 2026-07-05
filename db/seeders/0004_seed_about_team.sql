@@ -37,6 +37,8 @@ INSERT INTO public.marungga_team_members (name, role, department, order_index, i
 -- Bidang Program dan Pengembangan
 ('S. Fridwan Pellokila', 'Anggota Bidang', 'Program dan Pengembangan', 90, NULL),
 ('Meilinda Fanni Oktaviani', 'Anggota Bidang', 'Program dan Pengembangan', 100, NULL),
+('Dulmanto Mina Belo', 'Anggota Bidang', 'Program dan Pengembangan', 102, NULL),
+('Gregorio Deta', 'Anggota Bidang', 'Program dan Pengembangan', 104, NULL),
 
 -- Bidang Keuangan dan Administrasi
 ('Ferdinan Duka', 'Anggota Bidang', 'Keuangan dan Administrasi', 110, NULL);

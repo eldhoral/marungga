@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Users, FileText, Settings, LogOut, Package } from 'lucide-react'
+import { LayoutDashboard, Users, FileText, Settings, LogOut, Package, Book, Handshake, Video } from 'lucide-react'
 import { createClient } from '@/utils/supabase/client'
 import { useRouter } from 'next/navigation'
 
@@ -28,6 +28,9 @@ export default function AdminLayout({
     { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
     { name: 'Programs', href: '/admin/programs', icon: Package },
     { name: 'Team', href: '/admin/team', icon: Users },
+    { name: 'Research', href: '/admin/research', icon: Book },
+    { name: 'Partners', href: '/admin/partners', icon: Handshake },
+    { name: 'Videos', href: '/admin/videos', icon: Video },
     { name: 'Content', href: '/admin/content', icon: FileText },
     { name: 'Settings', href: '/admin/settings', icon: Settings },
   ]

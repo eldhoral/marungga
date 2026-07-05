@@ -2,13 +2,14 @@ import { createClient } from '@/utils/supabase/server'
 import { ProgramForm } from '../ProgramForm'
 import { notFound } from 'next/navigation'
 
-export default async function EditProgramPage({ params }: { params: { id: string } }) {
+export default async function EditProgramPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const supabase = await createClient()
   
   const { data: program, error } = await supabase
     .from('marungga_programs')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', id)
     .single()
 
   if (error || !program) {

@@ -4,11 +4,11 @@ import { createClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-export async function deleteProgram(id: string) {
+export async function deleteResearchProduct(id: string) {
   const supabase = await createClient()
   
   const { error } = await supabase
-    .from('marungga_programs')
+    .from('marungga_research_products')
     .delete()
     .eq('id', id)
 
@@ -16,36 +16,32 @@ export async function deleteProgram(id: string) {
     return { error: error.message }
   }
 
-  revalidatePath('/admin/programs')
-  revalidatePath('/programs')
+  revalidatePath('/admin/research')
+  revalidatePath('/about')
   return { success: true }
 }
 
-export async function saveProgram(formData: FormData) {
+export async function saveResearchMember(formData: FormData) {
   const supabase = await createClient()
   
   const id = formData.get('id') as string | null
   const title = formData.get('title') as string
-  const year = formData.get('year') as string
-  const description = formData.get('description') as string
-  const location = formData.get('location') as string | null
-  const category = formData.get('category') as string | null
   const order_index = formData.get('order_index') as string | null
   const image_file = formData.get('image_file') as File | null
 
-  if (!title || !year || !description) {
-    return { error: 'Title, year, and description are required.' }
+  if (!title) {
+    return { error: 'Title is required.' }
   }
 
-  let image_url = null;
+  let cover_url = formData.get('cover_url') as string | null;
 
   if (image_file && image_file.size > 0) {
     const fileExt = image_file.name.split('.').pop()
-    const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`
-    const filePath = `programs/${fileName}`
+    const fileName = `research_${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`
+    const filePath = `research/${fileName}`
 
-    const { error: uploadError, data } = await supabase.storage
-      .from('media')
+    const { error: uploadError } = await supabase.storage
+      .from('marungga-public')
       .upload(filePath, image_file)
 
     if (uploadError) {
@@ -53,37 +49,32 @@ export async function saveProgram(formData: FormData) {
     }
 
     const { data: publicUrlData } = supabase.storage
-      .from('media')
+      .from('marungga-public')
       .getPublicUrl(filePath)
     
-    image_url = publicUrlData.publicUrl
+    cover_url = publicUrlData.publicUrl
   }
 
   const payload: any = {
     title,
-    year,
-    description,
-    location,
-    category,
-    order_index: order_index ? parseInt(order_index) : 0,
-    updated_at: new Date().toISOString(),
+    order_index: order_index ? parseInt(order_index) : 0
   }
 
-  if (image_url) {
-    payload.image_url = image_url;
+  if (cover_url) {
+    payload.cover_url = cover_url;
   }
 
   let error;
 
   if (id) {
     const { error: updateError } = await supabase
-      .from('marungga_programs')
+      .from('marungga_research_products')
       .update(payload)
       .eq('id', id)
     error = updateError
   } else {
     const { error: insertError } = await supabase
-      .from('marungga_programs')
+      .from('marungga_research_products')
       .insert([payload])
     error = insertError
   }
@@ -92,7 +83,7 @@ export async function saveProgram(formData: FormData) {
     return { error: error.message }
   }
 
-  revalidatePath('/admin/programs')
-  revalidatePath('/programs')
-  redirect('/admin/programs')
+  revalidatePath('/admin/research')
+  revalidatePath('/about')
+  redirect('/admin/research')
 }

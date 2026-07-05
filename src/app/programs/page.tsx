@@ -26,7 +26,7 @@ export default async function Programs() {
   const { data: programs } = await supabase
     .from('marungga_programs')
     .select('*')
-    .order('created_at', { ascending: false });
+    .order('order_index', { ascending: true });
 
   return (
     <div className="programs-page animate-fade-in relative">
