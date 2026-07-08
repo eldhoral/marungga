@@ -34,21 +34,21 @@ export default function ProgramCard({ slug, title, description, date, funding, l
       <div className="program-content">
         <div className="flex flex-wrap items-center gap-2 mb-4">
           {date && (
-            <div className="flex items-center gap-1.5 bg-surface-alt border border-border px-2.5 py-1 rounded-md text-xs font-medium text-muted-foreground">
-              <Calendar className="w-3.5 h-3.5 text-primary" />
-              <span>{date}</span>
+            <div className="flex items-center gap-1.5 bg-surface-alt border border-border px-2.5 py-1 rounded-md text-xs font-medium text-muted-foreground max-w-full">
+              <Calendar className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+              <span className="truncate">{date}</span>
             </div>
           )}
           {location && (
-            <div className="flex items-center gap-1.5 bg-surface-alt border border-border px-2.5 py-1 rounded-md text-xs font-medium text-muted-foreground">
-              <MapPin className="w-3.5 h-3.5 text-primary" />
-              <span>{location}</span>
+            <div className="flex items-center gap-1.5 bg-surface-alt border border-border px-2.5 py-1 rounded-md text-xs font-medium text-muted-foreground max-w-full">
+              <MapPin className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+              <span className="truncate">{location}</span>
             </div>
           )}
           {funding && (
-            <div className="flex items-center gap-1.5 bg-surface-alt border border-border px-2.5 py-1 rounded-md text-xs font-medium text-muted-foreground">
-              <Tag className="w-3.5 h-3.5 text-primary" />
-              <span>{funding}</span>
+            <div className="flex items-start gap-1.5 bg-surface-alt border border-border px-2.5 py-1 rounded-md text-xs font-medium text-muted-foreground max-w-full">
+              <Tag className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+              <span className="line-clamp-2 text-left">{funding}</span>
             </div>
           )}
         </div>
