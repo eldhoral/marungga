@@ -38,6 +38,9 @@ export async function saveTeamMember(formData: FormData) {
   let image_url = null;
 
   if (image_file && image_file.size > 0) {
+    if (image_file.size > 1024 * 1024) {
+      return { error: 'Image size must be less than 1MB.' }
+    }
     const fileExt = image_file.name.split('.').pop()
     const fileName = `team_${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`
     const filePath = `team/${fileName}`

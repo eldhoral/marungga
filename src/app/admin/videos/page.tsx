@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { PlusCircle, Pencil, Trash2 } from 'lucide-react'
 import { deleteVideo } from './actions'
+import { SubmitButton } from '@/components/SubmitButton'
 
 export const dynamic = 'force-dynamic'
 
@@ -80,9 +81,9 @@ export default async function VideosPage() {
                           'use server'
                           await deleteVideo(video.id)
                         }}>
-                          <Button variant="destructive" size="sm" className="flex items-center gap-2">
-                            <Trash2 className="h-4 w-4" /> Delete
-                          </Button>
+                          <SubmitButton variant="destructive" size="sm" icon={<Trash2 className="h-4 w-4" />} loadingText="Deleting...">
+                            Delete
+                          </SubmitButton>
                         </form>
                       </div>
                     </td>

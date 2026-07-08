@@ -22,6 +22,8 @@ export const metadata: Metadata = {
   description: "Yayasan Masyarakat Tangguh Sejahtera - Membangun Masyarakat Indonesia Timur yang Tangguh dan Sejahtera",
 };
 
+import NextTopLoader from 'nextjs-toploader';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(inter.variable, jakarta.variable, "font-sans", geist.variable)}>
       <body suppressHydrationWarning style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <NextTopLoader color="#0f4761" showSpinner={false} />
         <Navbar />
         <main style={{ flex: 1, position: 'relative' }}>
           {children}

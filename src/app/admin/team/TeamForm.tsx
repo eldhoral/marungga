@@ -29,6 +29,15 @@ export function TeamForm({ member }: { member?: TeamMember }) {
     setError(null)
     
     const formData = new FormData(e.currentTarget)
+    
+    // File size validation (max 1MB)
+    const file = formData.get('image_file') as File | null
+    if (file && file.size > 1024 * 1024) {
+      setError('Image size must be less than 1MB')
+      setIsLoading(false)
+      return
+    }
+
     if (member?.id) {
       formData.append('id', member.id)
     }

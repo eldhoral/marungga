@@ -28,6 +28,15 @@ export function PartnerForm({ partner }: { partner?: Partner }) {
     setError(null)
     
     const formData = new FormData(e.currentTarget)
+    
+    // File size validation (max 1MB)
+    const file = formData.get('image_file') as File | null
+    if (file && file.size > 1024 * 1024) {
+      setError('Ukuran gambar maksimal adalah 1MB')
+      setIsLoading(false)
+      return
+    }
+
     if (partner?.id) {
       formData.append('id', partner.id)
     }

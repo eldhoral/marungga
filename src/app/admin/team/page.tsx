@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Plus, Edit, Trash2 } from 'lucide-react'
 import { deleteTeamMember } from './actions'
+import { SubmitButton } from '@/components/SubmitButton'
 
 export const dynamic = 'force-dynamic'
 
@@ -68,9 +69,9 @@ export default async function TeamManager() {
                             'use server'
                             await deleteTeamMember(member.id)
                           }}>
-                            <Button type="submit" variant="destructive" size="sm" className="flex items-center gap-1">
-                              <Trash2 size={14} /> Delete
-                            </Button>
+                            <SubmitButton variant="destructive" size="sm" icon={<Trash2 size={14} />} loadingText="Deleting...">
+                              Delete
+                            </SubmitButton>
                           </form>
                         </div>
                       </TableCell>

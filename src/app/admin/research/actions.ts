@@ -36,6 +36,9 @@ export async function saveResearchMember(formData: FormData) {
   let cover_url = formData.get('cover_url') as string | null;
 
   if (image_file && image_file.size > 0) {
+    if (image_file.size > 1024 * 1024) {
+      return { error: 'Image size must be less than 1MB.' }
+    }
     const fileExt = image_file.name.split('.').pop()
     const fileName = `research_${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`
     const filePath = `research/${fileName}`
