@@ -1,12 +1,14 @@
 'use client'
 
 import { useFormStatus } from 'react-dom'
-import { Button, ButtonProps } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
+import { ComponentProps } from 'react'
 
-interface SubmitButtonProps extends ButtonProps {
+interface SubmitButtonProps extends ComponentProps<typeof Button> {
   loadingText?: string
   icon?: React.ReactNode
+  children?: React.ReactNode
 }
 
 export function SubmitButton({ children, loadingText, icon, ...props }: SubmitButtonProps) {
