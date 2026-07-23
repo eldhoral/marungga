@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/', '/private/'],
     },
-    sitemap: 'https://marungga.me/sitemap.xml',
+    sitemap: 'https://marungga.org/sitemap.xml',
   }
 }
